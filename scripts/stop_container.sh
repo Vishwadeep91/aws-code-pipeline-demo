@@ -1,14 +1,16 @@
 #!/bin/bash
 set -e
 
-# Find container ID running on port 5000 or using the specific image
-CONTAINER_ID=$(docker ps -q --filter "ancestor=vishwadeep91/simple-python-flask-app:latest")
+# Get container ID running the specified image
+containerID=$(docker ps --filter "ancestor=vishwadeep91/simple-python-flask-app:latest" -q)
 
-if [ -n "$CONTAINER_ID" ]; then
-  echo "Stopping container $CONTAINER_ID..."
-  docker rm -f "$CONTAINER_ID"
+# Check if a container was found
+if [ -n "$containerID" ]; then
+  echo "Removing container: $containerID"
+  docker rm -f "$containerID"
 else
-  echo "No running container found for the image."
+  echo "No container found using image vishwadeep91/simple-python-flask-app:latest"
 fi
+
 
 
