@@ -10,3 +10,5 @@ if [ -n "$CONTAINER_ID" ]; then
 else
   echo "No running container found for the image."
 fi
+
+
